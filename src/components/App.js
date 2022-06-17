@@ -8,8 +8,8 @@ import "bootstrap/dist/css/bootstrap.css";
 
 
 function App() {
-  const deckID = 'vzffppgn7fic';
-  const secondDeckID = 'mcc4fc06aiw2';
+  const deckID = 'ket38ykedckq';
+  const secondDeckID = 'qpmg4oc0vhve';
   const [score, setScore] = useLocalStorage('score', 0);
   const [card, setCard] = useState(null);
   const [cardValue, setCardValue] = useState();
