@@ -90,13 +90,31 @@
 @media screen and (max-width: 650px) {
     .card {
         margin: 0 3%;
-        width: 35%;
+        width: 175px;
+        max-height: 241px;
         border: 0;
         border: 0px !important;
         outline: 0 !important;
     }
     
     .card img {
-        width: 35%;
+        width:175px;
+        height: 241px !important;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .card {
+        margin: 0 3%;
+        width: 125px;
+        max-height: 172px;
+        border: 0;
+        border: 0px !important;
+        outline: 0 !important;
+    }
+    
+    .card img {
+        width:125px;
+        height: 172px !important;
     }
   }
