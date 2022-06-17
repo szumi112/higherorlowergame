@@ -31,7 +31,7 @@
 .card {
     margin: 0 3%;
     width: 250px;
-    height: 345px;
+    max-height: 345px;
     border: 0;
     border: 0px !important;
     outline: 0 !important;
