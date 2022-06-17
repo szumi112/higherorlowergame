@@ -57,6 +57,10 @@
     text-align: center;
 }
 
+.restart button {
+    margin: 0 20px;
+}
+
 .invisible {
     display: none;
 }
@@ -117,4 +121,18 @@
         width:125px;
         height: 172px !important;
     }
+  }
+
+  .underline {
+    text-decoration: underline;
+  }
+
+
+  .historyResult {
+    background-color: rgb(233, 233, 233);
+    width: 325px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    color: rgb(50, 50, 50);
+    border-radius: 10px;
   }

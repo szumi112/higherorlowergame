@@ -8,17 +8,19 @@ import "bootstrap/dist/css/bootstrap.css";
 
 
 function App() {
-  const deckID = 'ket38ykedckq';
-  const secondDeckID = 'qpmg4oc0vhve';
+  const deckID = '1or5ez7cudwy';
+  const secondDeckID = 'vuykn2i4l1w0';
   const [score, setScore] = useLocalStorage('score', 0);
   const [card, setCard] = useState(null);
   const [cardValue, setCardValue] = useState();
   const [secondCard, setSecondCard] = useState(null);
   const [secondCardValue, setSecondCardValue] = useState();
   const [isShown, setIsShown] = useState(false)
+  const [showHistory, setShowHistory] = useLocalStorage('showhistory', false)
   const [message, setMessage] = useLocalStorage('message', null);
   const [round, setRound] = useLocalStorage('round', 0);
   const [history, setHistory] = useLocalStorage('history', [{}]);
+  const [btnMsg, setBtnMsg] = useLocalStorage('btnmsg', 'Game History')
 
   // var shuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
 
@@ -59,9 +61,19 @@ function App() {
         })
     }, [secondDeckID]);
 
-    // show or close div
+    // show or close div missing card
     const toggle = () => 
     setIsShown(isShown => !isShown);
+
+    // show or close history div
+    const historyToggle = () => {
+    setShowHistory(showHistory => !showHistory);
+    if (btnMsg === 'Game History') {
+      setBtnMsg('Close History')
+    } else {
+      setBtnMsg('Game History');
+    }
+    }
 
     // numerical values for cards.. if card is "King" -> it will show "K" and assign value of '13' to it
       const cardMap = {
@@ -79,6 +91,23 @@ function App() {
           'K': 13,
           'A': 14,
       }
+
+      // cardMap modified for history
+      const historyMap = {
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+        7: 7,
+        8: 8,
+        9: 9,
+        1: 10, //10 == "1" == 10 -> aplikacja pobiera pierwsza litere z nazwy karty czyli z 10 bedzie pobrana jedynka "1"
+        'J': 'J',
+        'Q': 'Q',
+        'K': 'K',
+        'A': 'A',
+    }
   
       // HIGHER logika gry - daj +0.1 jesli gracz zgadnal prawidlowo
 
@@ -96,8 +125,8 @@ function App() {
     const higherFuncs = () => {
       toggle();
       handleHigher();
-      // setTimeout(() => window.location.reload(), 1000);
-      window.location.reload()
+      setTimeout(() => window.location.reload(), 1000);
+      // window.location.reload()
       setRound(round + 1);
       setHistory([...history, {
         left: cardValue,
@@ -123,8 +152,8 @@ function App() {
     const lowerFuncs = () => {
       toggle();
       handleLower();
-      // setTimeout(() => window.location.reload(), 1000);
-      window.location.reload()
+      setTimeout(() => window.location.reload(), 1000);
+      // window.location.reload()
       setRound(round + 1);
       setHistory([...history, {
         left: cardValue,
@@ -159,6 +188,8 @@ function App() {
       <div className="App">
      
      <h1> Will the next card be..?</h1>
+     <p className='red'>{history.right}</p>
+     <p className='red'>{history.right}</p>
 
        <div className="buttons"> {/* .buttons display flex */}
        
@@ -196,18 +227,21 @@ function App() {
 </div>
 <div className="restart">
 <Button variant="outline-danger" onClick={restartGame}>Restart Game</Button>
+<Button variant="outline-success" onClick={historyToggle}>{btnMsg}</Button>
 </div>
    </>
 
    }
 <div className='history'>
-<h5>Game history:</h5>
+
+
 {history.map(card => {
   return(
-    (card.left ? (
+    (showHistory && card.left ? (
     <div className='historyResult'>
-      <p>Left card value: <span className='bold'>{cardMap[card.left]}</span> vs. Right card value: <span className='bold'>{cardMap[card.right]}</span></p>
+      <p>Left card value: <span className='bold'>{historyMap[card.left]}</span> vs. Right card value: <span className='bold'>{historyMap[card.right]}</span></p>
       <p>You chose: <span className='bold red'>{card.choice}</span></p>
+      {card.left < card.right ? <p className='underline'>You won! (+0.1)</p> : <p className='underline'>You lost! (+0.0)</p>}
     </div>
     ) : <div className='displayNone'></div>))
 })}
