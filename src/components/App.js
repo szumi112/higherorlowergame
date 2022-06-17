@@ -24,8 +24,8 @@ function App() {
 
   // URL or 1st and 2nd deck of cards
 
-  var cardUrl = `http://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
-  var secondCardDeck = `http://deckofcardsapi.com/api/deck/${secondDeckID}/draw/?count=1`
+  var cardUrl = `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
+  var secondCardDeck = `https://deckofcardsapi.com/api/deck/${secondDeckID}/draw/?count=1`
 
   // fetch card data
 
