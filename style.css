@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.App {
+    margin: 5% auto 0;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    margin: 40px auto;
+    justify-content: center;
+    align-items:baseline;
+}
+
+.buttons p {
+    margin: 0 25px;
+}
+
+.deck {
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card {
+    width: 400px;
+}

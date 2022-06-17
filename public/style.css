@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.App {
+    margin: 2.5% auto 0;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    margin: 40px auto;
+    justify-content: center;
+    align-items:baseline;
+}
+
+.buttons p {
+    margin: 0 25px;
+}
+
+.deck {
+    margin: 4% auto 0;
+    text-align: center;
+    padding: 0 25px;
+    display: flex;
+    justify-content:center;
+}
+
+.card {
+    margin: 0 3%;
+    width: 250px;
+    border: 0;
+    border: 0px !important;
+    outline: 0 !important;
+}
+
+.score {
+    color: red;
+    font-weight: bold;
+}
+
+.howto {
+    margin: 50px auto 0;
+    text-align: center;
+}
+
+.restart {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.invisible {
+    display: none;
+}
+
+.startAgain {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.history {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.history h5 {
+    margin-bottom: 3%;
+}
+
+.displayNone {
+    display: none;
+}
+
+.red {
+    color: red;
+}
