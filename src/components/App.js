@@ -8,8 +8,8 @@ import "bootstrap/dist/css/bootstrap.css";
 
 
 function App() {
-  const deckID = 'u2xktbueywjh';
-  const secondDeckID = 'm2sskkuiji97';
+  const deckID = '6exldwnjyfj2';
+  const secondDeckID = '6exldwnjyfj2';
   const [score, setScore] = useLocalStorage('score', 0);
   const [card, setCard] = useState(null);
   const [cardValue, setCardValue] = useState();
@@ -20,7 +20,7 @@ function App() {
   const [round, setRound] = useLocalStorage('round', 0);
   const [history, setHistory] = useLocalStorage('history', [{}]);
 
-  // var shuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=20`;
+  // var shuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
 
   // URL or 1st and 2nd deck of cards
 
