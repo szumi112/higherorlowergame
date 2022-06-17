@@ -86,3 +86,17 @@
 .red {
     color: red;
 }
+
+@media screen and (max-width: 650px) {
+    .card {
+        margin: 0 3%;
+        width: 35%;
+        border: 0;
+        border: 0px !important;
+        outline: 0 !important;
+    }
+    
+    .card img {
+        width: 35%;
+    }
+  }
