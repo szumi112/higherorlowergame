@@ -189,7 +189,7 @@ function App() {
 
 {!isShown && 
 <div className='card'>
-    <img src={cardImg} alt="card image" />
+    <img src={cardImg} alt="card image" height="347.5px" />
 </div>
 }
 
