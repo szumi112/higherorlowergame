@@ -32,7 +32,7 @@ function App() {
     axios.get(shuffle)
     .then(res => {
       setDeckID(res.data.deck_id)
-      console.log(res.data.deck_id)
+      // console.log(res.data.deck_id) // just Testing
     })
     .catch(error => {
     console.log("there was an error with fetching card data: " + error);
@@ -45,7 +45,7 @@ function App() {
     axios.get(secondShuffle)
     .then(res => {
       setSecondDeckID(res.data.deck_id)
-      console.log(res.data.deck_id)
+      // console.log(res.data.deck_id) // just Testing
     })
     .catch(error => {
     console.log("there was an error with fetching card data: " + error);
@@ -56,8 +56,8 @@ function App() {
   var cardUrl = `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
   var secondCardDeck = `https://deckofcardsapi.com/api/deck/${secondDeckID}/draw/?count=1`
 
-  console.log('cardUrl: ' + cardUrl);
-  console.log('secondCardUrl: ' + secondCardDeck)
+  // console.log('cardUrl: ' + cardUrl); // just Testing
+  // console.log('secondCardUrl: ' + secondCardDeck) // just Testing
 
   // fetch card data
       useEffect(() => {
@@ -168,7 +168,7 @@ function App() {
         setMessage('You got it!')
       } else {
         setMessage('Try again :)')
-        console.log('unlucky, try again');
+        
       }
     }
 
