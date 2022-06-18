@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import cardImg from '../cardQuestionMarkWHITEblk.jpg';
+import cardImg from '../logoblue.jpg';
 import useLocalStorage from "../Hooks/useLocalStorage";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -24,7 +24,7 @@ function App() {
 
   // link to unique game Deck because the API has limits and it's necessary to keep getting new API Key ( called "deck_id")
   var shuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=20`;
-  var secondShuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=10`;
+  var secondShuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=20`;
 
   // first deck unique deck_id
   useEffect(() => {
@@ -55,6 +55,9 @@ function App() {
   // URL for 1st and 2nd deck of cards
   var cardUrl = `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
   var secondCardDeck = `https://deckofcardsapi.com/api/deck/${secondDeckID}/draw/?count=1`
+
+  console.log('cardUrl: ' + cardUrl);
+  console.log('secondCardUrl: ' + secondCardDeck)
 
   // fetch card data
       useEffect(() => {
@@ -201,7 +204,7 @@ function App() {
  <br></br>
  <p>Would you like to start again?</p>
  <Button variant="outline-danger" onClick={restartGame}>Yes, restart game</Button>
-
+ <Button variant="outline-success" onClick={historyToggle}>{btnMsg}</Button>
  </div>
   :
  <>
@@ -255,10 +258,11 @@ function App() {
 <div className='history'>
 
 
-{history.map(card => {
+{history.map((card, i) => {
   return(
     (showHistory && card.left ? (
     <div className='historyResult'>
+      <p className='fontChange'>Round {i}</p>
       <p>Left card value: <span className='bold'>{historyMap[card.left]}</span> vs. Right card value: <span className='bold'>{historyMap[card.right]}</span></p>
       <p>You chose: <span className='bold red'>{card.choice}</span></p>
       {card.left < card.right ? <p className='underline'>You won! (+0.1)</p> : <p className='underline'>You lost! (+0.0)</p>}

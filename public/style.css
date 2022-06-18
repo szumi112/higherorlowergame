@@ -136,3 +136,12 @@
     color: rgb(50, 50, 50);
     border-radius: 10px;
   }
+
+  .fontChange {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+  }
+
+  .startAgain button {
+    margin: 0 20px;
+  }
