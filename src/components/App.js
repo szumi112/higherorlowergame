@@ -8,8 +8,8 @@ import "bootstrap/dist/css/bootstrap.css";
 
 
 function App() {
-  const deckID = '1or5ez7cudwy';
-  const secondDeckID = 'vuykn2i4l1w0';
+  const [deckID, setDeckID] = useState('x60sy3r1iwl8');
+  const [secondDeckID, setSecondDeckID] = useState('ss5r6b8iug2c');
   const [score, setScore] = useLocalStorage('score', 0);
   const [card, setCard] = useState(null);
   const [cardValue, setCardValue] = useState();
@@ -22,15 +22,41 @@ function App() {
   const [history, setHistory] = useLocalStorage('history', [{}]);
   const [btnMsg, setBtnMsg] = useLocalStorage('btnmsg', 'Game History')
 
-  // var shuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`;
+  // link to unique game Deck because the API has limits and it's necessary to keep getting new API Key ( called "deck_id")
+  var shuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=20`;
+  var secondShuffle = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=10`;
 
-  // URL or 1st and 2nd deck of cards
+  // first deck unique deck_id
+  useEffect(() => {
 
+    axios.get(shuffle)
+    .then(res => {
+      setDeckID(res.data.deck_id)
+      console.log(res.data.deck_id)
+    })
+    .catch(error => {
+    console.log("there was an error with fetching card data: " + error);
+    })
+}, []);
+
+  // second deck unique deck_id
+  useEffect(() => {
+
+    axios.get(secondShuffle)
+    .then(res => {
+      setSecondDeckID(res.data.deck_id)
+      console.log(res.data.deck_id)
+    })
+    .catch(error => {
+    console.log("there was an error with fetching card data: " + error);
+    })
+}, []);
+
+  // URL for 1st and 2nd deck of cards
   var cardUrl = `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
   var secondCardDeck = `https://deckofcardsapi.com/api/deck/${secondDeckID}/draw/?count=1`
 
   // fetch card data
-
       useEffect(() => {
 
           axios.get(cardUrl)
@@ -43,10 +69,9 @@ function App() {
           .catch(error => {
           console.log("there was an error with fetching card data: " + error);
           })
-      }, [deckID]);
+      }, []);
 
       // fetch card data
-
       useEffect(() => {
 
         axios.get(secondCardDeck)
@@ -59,7 +84,7 @@ function App() {
         .catch(error => {
         console.log("there was an error with fetching card data: " + error);
         })
-    }, [secondDeckID]);
+    }, []);
 
     // show or close div missing card
     const toggle = () => 
@@ -110,7 +135,6 @@ function App() {
     }
   
       // HIGHER logika gry - daj +0.1 jesli gracz zgadnal prawidlowo
-
     const handleHigher = (e) => {
       if (cardMap[cardValue] < cardMap[secondCardValue]) {
         setScore(score + 0.1);
@@ -121,7 +145,6 @@ function App() {
   }
 
   // funkcje ktore beda uzyte w przypadku nacisniecia guzika "higher"
-  
     const higherFuncs = () => {
       toggle();
       handleHigher();
@@ -136,7 +159,6 @@ function App() {
     }
 
     // LOWER logika gry - daj +0.1 jesli gracz zgadnal prawidlowo
-
     const handleLower = (e) => {
       if (cardMap[cardValue] > cardMap[secondCardValue]) {
         setScore(score + 0.1);
@@ -148,7 +170,6 @@ function App() {
     }
 
      // funkcje ktore beda uzyte w przypadku nacisniecia guzika "lower"
-
     const lowerFuncs = () => {
       toggle();
       handleLower();
@@ -163,7 +184,6 @@ function App() {
     }
 
     // zresetuj wszystko gdy gracz nacisnie "restart game"
-
     const restartGame = () => {
       setScore(0);
       setRound(0);
